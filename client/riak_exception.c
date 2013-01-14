@@ -16,62 +16,17 @@
  * <http://www.doctrine-project.org>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include <php.h>
 #include <zend_exceptions.h>
 
-#include "php_riak.h"
 #include "client/riak_exception.h"
 
-zend_function_entry riak_functions[] = {
-    { NULL, NULL, NULL }
-};
+zend_class_entry *riak_ce_riak_exception;
+ 
+void riak_client_RiakException(TSRMLS_D) {
+  zend_class_entry e;
+ 
+  INIT_CLASS_ENTRY(e, "RiakException", NULL);
 
-
-/* {{{ riak_module_entry
-*/
-zend_module_entry riak_module_entry = {
-    STANDARD_MODULE_HEADER,
-    PHP_RIAK_EXTNAME,
-    riak_functions,
-    PHP_MINIT(riak),
-    NULL,
-    NULL,
-    NULL,
-    PHP_MINFO(riak),
-    PHP_RIAK_VERSION,
-    STANDARD_MODULE_PROPERTIES
-};
-/* }}} */
-
-
-#ifdef COMPILE_DL_RIAK
-ZEND_GET_MODULE(riak)
-#endif
-
-
-/* {{{ PHP_MINIT_FUNCTION
- */
-PHP_MINIT_FUNCTION(riak) {
-    riak_client_RiakException(TSRMLS_C);
+  riak_ce_riak_exception = zend_register_internal_class_ex(&e, (zend_class_entry*)zend_exception_get_default(TSRMLS_C), NULL TSRMLS_CC);
 }
-/* }}} */
-
-
-/* {{{ PHP_MINFO_FUNCTION
-*/
-PHP_MINFO_FUNCTION(riak) {
-  php_info_print_table_start();
-
-  php_info_print_table_header(2, "Riak Support", "enabled");
-  php_info_print_table_row(2, "Version", PHP_RIAK_VERSION);
-
-  php_info_print_table_end();
-
-  DISPLAY_INI_ENTRIES();
-}
-/* }}} */
-
