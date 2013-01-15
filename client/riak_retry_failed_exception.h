@@ -16,17 +16,4 @@
  * <http://www.doctrine-project.org>.
  */
 
-#include <php.h>
-#include <zend_exceptions.h>
-
-#include "client/riak_exception.h"
-
-extern PHPAPI zend_class_entry *riak_ce_riak_client_riak_exception;
- 
-void riak_client_RiakException(TSRMLS_D) {
-    zend_class_entry e;
- 
-    INIT_NS_CLASS_ENTRY(e, "Riak\\Client", "RiakException", NULL);
-
-    riak_ce_riak_client_riak_exception = zend_register_internal_class_ex(&e, (zend_class_entry*)zend_exception_get_default(TSRMLS_C), NULL TSRMLS_CC);
-}
+void riak_client_RiakRetryFailedException(TSRMLS_D);

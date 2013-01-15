@@ -20,13 +20,16 @@
 #include <zend_exceptions.h>
 
 #include "client/riak_exception.h"
+#include "client/riak_retry_failed_exception.h"
 
-extern PHPAPI zend_class_entry *riak_ce_riak_client_riak_exception;
+extern PHPAPI zend_class_entry *riak_ce_riak_client_riak_retry_failed_exception;
  
-void riak_client_RiakException(TSRMLS_D) {
+void riak_client_RiakRetryFailedException(TSRMLS_D) {
     zend_class_entry e;
  
-    INIT_NS_CLASS_ENTRY(e, "Riak\\Client", "RiakException", NULL);
+    INIT_NS_CLASS_ENTRY(e, "Riak\\Client", "RiakRetryFailedException", NULL);
 
-    riak_ce_riak_client_riak_exception = zend_register_internal_class_ex(&e, (zend_class_entry*)zend_exception_get_default(TSRMLS_C), NULL TSRMLS_CC);
+    riak_ce_riak_client_riak_retry_failed_exception = zend_register_internal_class_ex(&e, riak_ce_riak_client_riak_exception, NULL TSRMLS_CC);
+
+    riak_ce_riak_client_riak_retry_failed_exception->create_object = riak_ce_riak_client_riak_exception;
 }

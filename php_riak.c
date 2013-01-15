@@ -25,6 +25,7 @@
 
 #include "php_riak.h"
 #include "client/riak_exception.h"
+#include "client/riak_retry_failed_exception.h"
 
 zend_function_entry riak_functions[] = {
     { NULL, NULL, NULL }
@@ -57,6 +58,7 @@ ZEND_GET_MODULE(riak)
  */
 PHP_MINIT_FUNCTION(riak) {
     riak_client_RiakException(TSRMLS_C);
+    riak_client_RiakRetryFailedException(TSRMLS_C);
 }
 /* }}} */
 
