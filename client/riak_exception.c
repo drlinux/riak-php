@@ -21,8 +21,8 @@
 
 #include "client/riak_exception.h"
 
-extern PHPAPI zend_class_entry *riak_ce_riak_client_riak_exception;
- 
+PHPAPI zend_class_entry *riak_ce_riak_client_riak_exception;
+
 void riak_client_RiakException(TSRMLS_D) {
     zend_class_entry e;
  

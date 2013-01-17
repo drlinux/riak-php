@@ -22,7 +22,7 @@
 #include "client/riak_exception.h"
 #include "client/riak_retry_failed_exception.h"
 
-extern PHPAPI zend_class_entry *riak_ce_riak_client_riak_retry_failed_exception;
+PHPAPI zend_class_entry *riak_ce_riak_client_riak_retry_failed_exception;
  
 void riak_client_RiakRetryFailedException(TSRMLS_D) {
     zend_class_entry e;

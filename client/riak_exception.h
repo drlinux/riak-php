@@ -16,4 +16,11 @@
  * <http://www.doctrine-project.org>.
  */
 
+#ifndef PHP_RIAK_CLIENT_RIAK_EXCEPTION_H
+#define PHP_RIAK_CLIENT_RIAK_EXCEPTION_H
+
+extern PHPAPI zend_class_entry *riak_ce_riak_client_riak_exception;
+
 void riak_client_RiakException(TSRMLS_D);
+
+#endif /* PPH_RIAK_CLIENT_RIAK_EXCEPTION_H */
